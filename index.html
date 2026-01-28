@@ -1,0 +1,487 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.2">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1">&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1">&lt;title&gt;Afik Kaniel - Product Expert&lt;/title&gt;</p>
+<p class="p1">&lt;link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"&gt;</p>
+<p class="p1">&lt;style&gt;</p>
+<p class="p1">*{margin:0;padding:0;box-sizing:border-box}</p>
+<p class="p1">:root{--bg:#0a0a0f;--card:#12121a;--primary:#6366f1;--secondary:#ec4899;--accent:#22d3ee;--text:#f1f5f9;--muted:#94a3b8}</p>
+<p class="p1">body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}</p>
+<p class="p1">h1,h2,h3,.header-name{font-family:'Space Grotesk',sans-serif}</p>
+<p class="p2"><br></p>
+<p class="p1">.bg-gradient{position:fixed;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 20% 20%,rgba(99,102,241,0.15) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(236,72,153,0.1) 0%,transparent 50%);pointer-events:none;z-index:-1}</p>
+<p class="p2"><br></p>
+<p class="p1">.floating-shapes{position:fixed;top:0;left:0;right:0;bottom:0;overflow:hidden;pointer-events:none;z-index:-1}</p>
+<p class="p1">.shape{position:absolute;border-radius:50%;filter:blur(60px);animation:float 20s infinite ease-in-out}</p>
+<p class="p1">.shape-1{width:400px;height:400px;background:rgba(99,102,241,0.2);top:-100px;left:-100px}</p>
+<p class="p1">.shape-2{width:300px;height:300px;background:rgba(236,72,153,0.15);bottom:20%;right:-50px;animation-delay:-5s}</p>
+<p class="p1">.shape-3{width:250px;height:250px;background:rgba(34,211,238,0.1);top:50%;left:30%;animation-delay:-10s}</p>
+<p class="p1">@keyframes float{0%,100%{transform:translate(0,0)}33%{transform:translate(30px,-30px)}66%{transform:translate(-20px,20px)}}</p>
+<p class="p2"><br></p>
+<p class="p1">/* Sticky Header - Fixed layout */</p>
+<p class="p1">.sticky-header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,15,0.85);backdrop-filter:blur(20px);padding:12px 48px;display:flex;align-items:center;gap:16px;border-bottom:1px solid rgba(255,255,255,0.05)}</p>
+<p class="p1">.profile-pic{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--secondary));padding:2px;overflow:hidden;flex-shrink:0}</p>
+<p class="p1">.profile-pic-inner{width:100%;height:100%;border-radius:50%;overflow:hidden}</p>
+<p class="p1">.profile-pic-inner img{width:100%;height:100%;object-fit:cover}</p>
+<p class="p1">.header-info{display:flex;flex-direction:column;flex-shrink:0}</p>
+<p class="p1">.header-name{font-size:1.4rem;font-weight:600;color:var(--text)}</p>
+<p class="p1">.header-title{font-size:0.8rem;color:var(--muted);letter-spacing:0.5px}</p>
+<p class="p1">.header-email{display:flex;align-items:center;gap:8px;margin-left:auto;margin-right:auto}</p>
+<p class="p1">.header-email a{color:var(--muted);text-decoration:none;font-size:0.85rem;transition:color 0.3s}</p>
+<p class="p1">.header-email a:hover{color:var(--accent)}</p>
+<p class="p1">.header-email svg{width:18px;height:18px;stroke:var(--muted)}</p>
+<p class="p1">.header-tags{display:flex;gap:8px;margin-left:auto}</p>
+<p class="p1">.header-tag{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);padding:5px 12px;border-radius:100px;font-size:0.75rem;display:flex;align-items:center;gap:5px;color:var(--muted);white-space:nowrap}</p>
+<p class="p1">.header-tag span{font-size:0.9rem}</p>
+<p class="p2"><br></p>
+<p class="p1">/* Timeline */</p>
+<p class="p1">.timeline-bar{position:fixed;top:80px;left:0;right:0;z-index:99;background:rgba(10,10,15,0.9);backdrop-filter:blur(20px);padding:20px 48px 16px;border-bottom:1px solid rgba(255,255,255,0.05)}</p>
+<p class="p1">.timeline{display:flex;align-items:center;justify-content:space-between;position:relative;max-width:900px;margin:0 auto}</p>
+<p class="p1">.timeline-track{position:absolute;top:50%;left:0;right:0;height:6px;background:rgba(255,255,255,0.1);transform:translateY(-50%);border-radius:3px;overflow:hidden}</p>
+<p class="p2"><br></p>
+<p class="p1">/* Animated Fire Progress Bar */</p>
+<p class="p1">.fire-progress{position:absolute;top:0;left:0;height:100%;width:0%;transition:width 0.5s cubic-bezier(0.4,0,0.2,1),opacity 0.5s ease;border-radius:3px;overflow:hidden;opacity:0}</p>
+<p class="p1">.fire-progress::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(90deg,#ff4500,#ff6b00,#ff8c00,#ffa500,#ffcc00,#ff8c00,#ff6b00,#ff4500,#ff6b00,#ff8c00);background-size:200% 100%;animation:fireFlow 1s linear infinite}</p>
+<p class="p1">.fire-progress::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.3) 50%,transparent 100%);background-size:50% 100%;animation:fireShimmer 0.8s ease-in-out infinite}</p>
+<p class="p1">@keyframes fireFlow{0%{background-position:200% 0}100%{background-position:0% 0}}</p>
+<p class="p1">@keyframes fireShimmer{0%,100%{opacity:0.3;transform:translateX(-100%)}50%{opacity:0.6;transform:translateX(100%)}}</p>
+<p class="p2"><br></p>
+<p class="p1">/* Fire particles */</p>
+<p class="p1">.fire-particles{position:absolute;top:0;left:0;height:100%;width:0%;pointer-events:none;overflow:visible;transition:opacity 0.5s ease;opacity:0}</p>
+<p class="p1">.particle{position:absolute;bottom:0;width:4px;height:4px;background:radial-gradient(circle,#ffcc00,#ff6b00);border-radius:50%;animation:rise 0.6s ease-out infinite;opacity:0}</p>
+<p class="p1">.particle:nth-child(1){left:10%;animation-delay:0s}</p>
+<p class="p1">.particle:nth-child(2){left:25%;animation-delay:0.1s}</p>
+<p class="p1">.particle:nth-child(3){left:40%;animation-delay:0.2s}</p>
+<p class="p1">.particle:nth-child(4){left:55%;animation-delay:0.15s}</p>
+<p class="p1">.particle:nth-child(5){left:70%;animation-delay:0.25s}</p>
+<p class="p1">.particle:nth-child(6){left:85%;animation-delay:0.05s}</p>
+<p class="p1">.particle:nth-child(7){left:95%;animation-delay:0.3s}</p>
+<p class="p1">@keyframes rise{0%{transform:translateY(0) scale(1);opacity:0.8}100%{transform:translateY(-15px) scale(0);opacity:0}}</p>
+<p class="p2"><br></p>
+<p class="p1">/* Fire glow effect */</p>
+<p class="p1">.fire-glow{position:absolute;top:50%;left:0;height:20px;width:0%;transform:translateY(-50%);background:radial-gradient(ellipse at center,rgba(255,100,0,0.4) 0%,transparent 70%);filter:blur(4px);pointer-events:none;transition:width 0.5s cubic-bezier(0.4,0,0.2,1),opacity 0.5s ease;opacity:0}</p>
+<p class="p2"><br></p>
+<p class="p1">.timeline-item{display:flex;flex-direction:column;align-items:center;cursor:pointer;position:relative;z-index:1;transition:all 0.3s}</p>
+<p class="p1">.timeline-item:hover{transform:translateY(-4px)}</p>
+<p class="p1">.timeline-logo{width:50px;height:50px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;transition:all 0.4s cubic-bezier(0.4,0,0.2,1);box-shadow:0 4px 15px rgba(0,0,0,0.3);overflow:hidden;padding:8px}</p>
+<p class="p1">.timeline-logo img{width:100%;height:100%;object-fit:contain;filter:grayscale(30%);transition:all 0.4s}</p>
+<p class="p1">.timeline-item.active .timeline-logo{transform:scale(1.25);box-shadow:0 0 25px rgba(255,107,53,0.6),0 0 50px rgba(255,200,0,0.4),0 8px 30px rgba(0,0,0,0.4)}</p>
+<p class="p1">.timeline-item.active .timeline-logo img{filter:grayscale(0%) brightness(1.1)}</p>
+<p class="p1">.timeline-item:not(.active) .timeline-logo{opacity:0.6}</p>
+<p class="p1">.timeline-item:not(.active):hover .timeline-logo{opacity:1;transform:scale(1.1)}</p>
+<p class="p1">.timeline-label{margin-top:12px;font-size:0.75rem;color:var(--muted);font-weight:500;transition:all 0.3s;white-space:nowrap}</p>
+<p class="p1">.timeline-year{font-size:0.6rem;color:var(--muted);opacity:0.5;margin-top:2px}</p>
+<p class="p1">.timeline-item.active .timeline-label{color:var(--text);font-weight:600}</p>
+<p class="p1">.timeline-item.active .timeline-year{opacity:1}</p>
+<p class="p2"><br></p>
+<p class="p1">main{padding-top:190px}</p>
+<p class="p2"><br></p>
+<p class="p1">/* Intro Section */</p>
+<p class="p1">.intro-section{min-height:60vh;display:flex;align-items:center;padding:50px 48px;max-width:1100px;margin:0 auto}</p>
+<p class="p1">.intro-text{max-width:800px}</p>
+<p class="p1">.intro-text h1{font-size:3rem;font-weight:700;line-height:1.2;margin-bottom:10px;color:var(--text)}</p>
+<p class="p1">.intro-text .tagline{font-size:1.1rem;color:var(--accent);margin-bottom:24px;font-weight:500}</p>
+<p class="p1">.intro-text p{color:var(--muted);font-size:0.95rem;margin-bottom:16px}</p>
+<p class="p1">.intro-text p strong{color:var(--text)}</p>
+<p class="p1">.fun-fact{background:linear-gradient(135deg,rgba(99,102,241,0.1),rgba(236,72,153,0.1));border:1px solid rgba(99,102,241,0.2);border-radius:14px;padding:16px 20px;margin-top:24px;display:flex;align-items:center;gap:12px}</p>
+<p class="p1">.fun-fact-icon{font-size:1.6rem}</p>
+<p class="p1">.fun-fact-text{font-size:0.85rem;color:var(--muted)}</p>
+<p class="p1">.fun-fact-text strong{color:var(--text)}</p>
+<p class="p2"><br></p>
+<p class="p1">/* Milestone Sections */</p>
+<p class="p1">.milestone{min-height:100vh;padding:70px 48px;position:relative;overflow:hidden}</p>
+<p class="p1">.milestone::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent)}</p>
+<p class="p1">.milestone-inner{max-width:1200px;margin:0 auto}</p>
+<p class="p1">.milestone-header{display:flex;align-items:center;gap:20px;margin-bottom:36px}</p>
+<p class="p1">.company-logo{width:65px;height:65px;border-radius:16px;background:var(--card);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;padding:10px;transition:all 0.3s;overflow:hidden}</p>
+<p class="p1">.company-logo:hover{transform:scale(1.05);box-shadow:0 10px 40px rgba(0,0,0,0.3)}</p>
+<p class="p1">.company-logo img{width:100%;height:100%;object-fit:contain}</p>
+<p class="p1">.milestone-title{font-size:2rem;font-weight:700}</p>
+<p class="p1">.milestone-meta{display:flex;gap:10px;align-items:center;margin-top:5px;flex-wrap:wrap}</p>
+<p class="p1">.period-badge{background:linear-gradient(135deg,var(--primary),var(--secondary));padding:4px 11px;border-radius:100px;font-size:0.7rem;font-weight:600}</p>
+<p class="p1">.role-badge{background:var(--card);border:1px solid rgba(255,255,255,0.1);padding:4px 11px;border-radius:100px;font-size:0.7rem;color:var(--muted)}</p>
+<p class="p2"><br></p>
+<p class="p1">/* Content Layout */</p>
+<p class="p1">.milestone-content{display:grid;grid-template-columns:1fr;gap:30px;align-items:start}</p>
+<p class="p1">.milestone-description{font-size:0.95rem;color:rgba(255,255,255,0.8)}</p>
+<p class="p1">.milestone-description p{margin-bottom:18px}</p>
+<p class="p1">.achievement-list{list-style:none;margin-top:18px}</p>
+<p class="p1">.achievement-list li{margin-bottom:14px;padding-left:26px;position:relative;font-size:0.9rem}</p>
+<p class="p1">.achievement-list li::before{content:'⚡';position:absolute;left:0;top:0}</p>
+<p class="p1">.achievement-list li strong{color:var(--accent)}</p>
+<p class="p1">.result-box{background:linear-gradient(135deg,rgba(34,211,238,0.1),rgba(99,102,241,0.1));border:1px solid rgba(34,211,238,0.3);border-radius:12px;padding:18px;margin-top:24px;position:relative;overflow:hidden}</p>
+<p class="p1">.result-box::before{content:'🎯';position:absolute;right:12px;top:12px;font-size:1.5rem;opacity:0.3}</p>
+<p class="p1">.result-box strong{color:var(--accent)}</p>
+<p class="p2"><br></p>
+<p class="p1">/* Diagonal Staircase Media Layout for ALL milestones */</p>
+<p class="p1">.media-section{margin-top:10px}</p>
+<p class="p1">.media-grid{display:flex;flex-direction:row;position:relative;height:200px;justify-content:space-between}</p>
+<p class="p1">.media-item{width:160px;height:100px;position:absolute;background:var(--card);border:1px solid rgba(255,255,255,0.05);border-radius:10px;overflow:hidden;cursor:pointer;transition:all 0.4s cubic-bezier(0.4,0,0.2,1)}</p>
+<p class="p1">.media-item:nth-child(1){left:0;top:0}</p>
+<p class="p1">.media-item:nth-child(2){left:50%;transform:translateX(-50%);top:50px}</p>
+<p class="p1">.media-item:nth-child(3){right:0;top:100px}</p>
+<p class="p1">.media-item:hover{transform:scale(1.08);z-index:10;box-shadow:0 10px 30px rgba(0,0,0,0.4);border-color:rgba(99,102,241,0.3)}</p>
+<p class="p1">.media-item:nth-child(2):hover{transform:translateX(-50%) scale(1.08)}</p>
+<p class="p1">.media-item img,.media-item video{width:100%;height:100%;object-fit:cover}</p>
+<p class="p1">.media-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;gap:8px;color:var(--muted);background:linear-gradient(135deg,rgba(99,102,241,0.05),rgba(236,72,153,0.05))}</p>
+<p class="p1">.media-placeholder svg{width:20px;height:20px;opacity:0.4}</p>
+<p class="p1">.media-placeholder span{font-size:0.7rem;opacity:0.6}</p>
+<p class="p2"><br></p>
+<p class="p1">/* Milestone without media - less padding */</p>
+<p class="p1">#playstudios{min-height:auto;padding-bottom:40px}</p>
+<p class="p2"><br></p>
+<p class="p1">/* Company accent colors */</p>
+<p class="p1">#playtika .period-badge{background:linear-gradient(135deg,#ef4444,#f97316)}</p>
+<p class="p1">#superplay .period-badge{background:linear-gradient(135deg,#eab308,#f97316)}</p>
+<p class="p1">#playstudios .period-badge{background:linear-gradient(135deg,#f97316,#fb923c)}</p>
+<p class="p1">#amp .period-badge{background:linear-gradient(135deg,#6366f1,#8b5cf6)}</p>
+<p class="p2"><br></p>
+<p class="p1">@media(max-width:1024px){</p>
+<p class="p1">.media-grid{height:auto;position:static;flex-direction:row;flex-wrap:wrap;gap:10px}</p>
+<p class="p1">.media-item{position:static!important;width:calc(33% - 7px)!important;transform:none!important}</p>
+<p class="p1">.media-item:hover{transform:scale(1.05)!important}</p>
+<p class="p1">}</p>
+<p class="p1">@media(max-width:768px){</p>
+<p class="p1">.sticky-header{padding:8px 16px;gap:8px}</p>
+<p class="p1">.header-tags{display:none}</p>
+<p class="p1">.timeline-bar{padding:14px 16px}</p>
+<p class="p1">.milestone,.intro-section{padding:40px 16px}</p>
+<p class="p1">.intro-text h1{font-size:2rem}</p>
+<p class="p1">.milestone-title{font-size:1.5rem}</p>
+<p class="p1">.timeline-logo{width:38px;height:38px;padding:6px}</p>
+<p class="p1">.timeline-item.active .timeline-logo{transform:scale(1.2)}</p>
+<p class="p1">.media-item{width:100%!important;height:90px!important}</p>
+<p class="p1">}</p>
+<p class="p1">&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1">&lt;div class="bg-gradient"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="floating-shapes"&gt;</p>
+<p class="p1">&lt;div class="shape shape-1"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="shape shape-2"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="shape shape-3"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;header class="sticky-header"&gt;</p>
+<p class="p1">&lt;div class="profile-pic"&gt;</p>
+<p class="p1">&lt;div class="profile-pic-inner"&gt;</p>
+<p class="p1">&lt;img src="https://i.imgur.com/PROFILE.jpg" alt="Afik Kaniel"&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="header-info"&gt;</p>
+<p class="p1">&lt;div class="header-name"&gt;Afik Kaniel&lt;/div&gt;</p>
+<p class="p1">&lt;div class="header-title"&gt;PRODUCT EXPERT&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="header-email"&gt;</p>
+<p class="p1">&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;rect x="2" y="4" width="20" height="16" rx="2"/&gt;&lt;path d="M22 6l-10 7L2 6"/&gt;&lt;/svg&gt;</p>
+<p class="p1">&lt;a href="mailto:afikkaniel@gmail.com"&gt;afikkaniel@gmail.com&lt;/a&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="header-tags"&gt;</p>
+<p class="p1">&lt;div class="header-tag"&gt;&lt;span&gt;🎮&lt;/span&gt; Gaming&lt;/div&gt;</p>
+<p class="p1">&lt;div class="header-tag"&gt;&lt;span&gt;💪&lt;/span&gt; Fitness&lt;/div&gt;</p>
+<p class="p1">&lt;div class="header-tag"&gt;&lt;span&gt;🧠&lt;/span&gt; Psychology&lt;/div&gt;</p>
+<p class="p1">&lt;div class="header-tag"&gt;&lt;span&gt;📊&lt;/span&gt; Data&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;nav class="timeline-bar"&gt;</p>
+<p class="p1">&lt;div class="timeline"&gt;</p>
+<p class="p1">&lt;div class="timeline-track"&gt;</p>
+<p class="p1">&lt;div class="fire-progress" id="fireProgress"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="fire-particles" id="fireParticles"&gt;</p>
+<p class="p1">&lt;div class="particle"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="particle"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="particle"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="particle"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="particle"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="particle"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="particle"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="fire-glow" id="fireGlow"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="timeline-item active" data-target="playtika"&gt;</p>
+<p class="p1">&lt;div class="timeline-logo"&gt;</p>
+<p class="p1">&lt;img src="https://i.imgur.com/PLAYTIKA_TIMELINE.png" alt="Playtika"&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="timeline-label"&gt;Playtika&lt;/div&gt;</p>
+<p class="p1">&lt;div class="timeline-year"&gt;2020-2022&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="timeline-item" data-target="superplay"&gt;</p>
+<p class="p1">&lt;div class="timeline-logo"&gt;</p>
+<p class="p1">&lt;img src="https://i.imgur.com/SUPERPLAY_TIMELINE.png" alt="SuperPlay"&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="timeline-label"&gt;SuperPlay&lt;/div&gt;</p>
+<p class="p1">&lt;div class="timeline-year"&gt;2022-2023&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="timeline-item" data-target="playstudios"&gt;</p>
+<p class="p1">&lt;div class="timeline-logo"&gt;</p>
+<p class="p1">&lt;img src="https://i.imgur.com/PLAYSTUDIOS_TIMELINE.png" alt="Playstudios"&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="timeline-label"&gt;Playstudios&lt;/div&gt;</p>
+<p class="p1">&lt;div class="timeline-year"&gt;2023-2024&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="timeline-item" data-target="amp"&gt;</p>
+<p class="p1">&lt;div class="timeline-logo"&gt;</p>
+<p class="p1">&lt;img src="https://i.imgur.com/AMP_TIMELINE.png" alt="amp"&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="timeline-label"&gt;amp&lt;/div&gt;</p>
+<p class="p1">&lt;div class="timeline-year"&gt;2024-2026&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/nav&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;main&gt;</p>
+<p class="p1">&lt;section class="intro-section"&gt;</p>
+<p class="p1">&lt;div class="intro-text"&gt;</p>
+<p class="p1">&lt;h1&gt;Hey, I'm Afik 👋&lt;/h1&gt;</p>
+<p class="p1">&lt;div class="tagline"&gt;Product Expert &amp; Gamification Enthusiast&lt;/div&gt;</p>
+<p class="p1">&lt;p&gt;I bring over &lt;strong&gt;7 years of product leadership&lt;/strong&gt; experience, including as a Product Manager, Senior PM, and Product Director. I've led end-to-end product lifecycles across the &lt;strong&gt;gaming, entertainment, and fitness&lt;/strong&gt; industries.&lt;/p&gt;</p>
+<p class="p1">&lt;p&gt;My approach blends deep business insights, data-driven strategies and a precision-focused user experience.&lt;/p&gt;</p>
+<p class="p1">&lt;p&gt;I believe a great Product Manager excels at navigating complex variables—balancing development constraints, business needs, UX and Data. With a passion for &lt;strong&gt;psychology and gamification&lt;/strong&gt;, I focus on mastering the user journey to ensure products aren't just great in theory, but resonate deeply with the end user.&lt;/p&gt;</p>
+<p class="p1">&lt;div class="fun-fact"&gt;</p>
+<p class="p1">&lt;div class="fun-fact-icon"&gt;🎖️&lt;/div&gt;</p>
+<p class="p1">&lt;div class="fun-fact-text"&gt;&lt;strong&gt;Fun fact:&lt;/strong&gt; Before diving into product, I served as a Unit Commander in an elite combat unit. Turns out leading soldiers and shipping products have more in common than you'd think!&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;section class="milestone" id="playtika"&gt;</p>
+<p class="p1">&lt;div class="milestone-inner"&gt;</p>
+<p class="p1">&lt;div class="milestone-header"&gt;</p>
+<p class="p1">&lt;div class="company-logo"&gt;</p>
+<p class="p1">&lt;img src="https://i.imgur.com/PLAYTIKA_HEADER.png" alt="Playtika"&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div&gt;</p>
+<p class="p1">&lt;div class="milestone-title"&gt;Playtika&lt;/div&gt;</p>
+<p class="p1">&lt;div class="milestone-meta"&gt;</p>
+<p class="p1">&lt;span class="period-badge"&gt;2020 - 2022&lt;/span&gt;</p>
+<p class="p1">&lt;span class="role-badge"&gt;Product Manager&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="milestone-content"&gt;</p>
+<p class="p1">&lt;div class="milestone-description"&gt;</p>
+<p class="p1">&lt;p&gt;I joined Playtika in early 2020, transitioning from military leadership. Managing a studio with &lt;strong&gt;$2M daily revenue&lt;/strong&gt;, I identified a critical risk: over-reliance on a small 'VIP' segment.&lt;/p&gt;</p>
+<p class="p1">&lt;p&gt;To diversify revenue, I launched a strategy to boost Paying Users (PU) and ARPDAU through psychology-driven product features:&lt;/p&gt;</p>
+<p class="p1">&lt;ul class="achievement-list"&gt;</p>
+<p class="p1">&lt;li&gt;&lt;strong&gt;Store Redesign:&lt;/strong&gt; Repositioned daily bonuses to maximize exposure to personalized bundles and deals.&lt;/li&gt;</p>
+<p class="p1">&lt;li&gt;&lt;strong&gt;Psychological Incentives:&lt;/strong&gt; Implemented automated, time-limited coupons to leverage urgency and the 'endowment effect.'&lt;/li&gt;</p>
+<p class="p1">&lt;li&gt;&lt;strong&gt;Advanced Monetization:&lt;/strong&gt; Deployed Decoy Offers to steer conversions, Rolling Offers for purchase momentum, and MGAPs for post-purchase gamification.&lt;/li&gt;</p>
+<p class="p1">&lt;/ul&gt;</p>
+<p class="p1">&lt;div class="result-box"&gt;</p>
+<p class="p1">&lt;strong&gt;The Result:&lt;/strong&gt; These initiatives significantly expanded the paying user base and successfully drove ARPDAU above &lt;strong&gt;1.7 cents&lt;/strong&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="media-section"&gt;</p>
+<p class="p1">&lt;div class="media-grid"&gt;</p>
+<p class="p1">&lt;div class="media-item"&gt;&lt;div class="media-placeholder"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"&gt;&lt;rect x="3" y="3" width="18" height="18" rx="2"/&gt;&lt;circle cx="8.5" cy="8.5" r="1.5"/&gt;&lt;path d="M21 15l-5-5L5 21"/&gt;&lt;/svg&gt;&lt;span&gt;Image 1&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="media-item"&gt;&lt;div class="media-placeholder"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"&gt;&lt;polygon points="5,3 19,12 5,21"/&gt;&lt;/svg&gt;&lt;span&gt;Video 1&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="media-item"&gt;&lt;div class="media-placeholder"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"&gt;&lt;rect x="3" y="3" width="18" height="18" rx="2"/&gt;&lt;circle cx="8.5" cy="8.5" r="1.5"/&gt;&lt;path d="M21 15l-5-5L5 21"/&gt;&lt;/svg&gt;&lt;span&gt;Image 2&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;section class="milestone" id="superplay"&gt;</p>
+<p class="p1">&lt;div class="milestone-inner"&gt;</p>
+<p class="p1">&lt;div class="milestone-header"&gt;</p>
+<p class="p1">&lt;div class="company-logo" style="background:#000"&gt;</p>
+<p class="p1">&lt;img src="https://i.imgur.com/SUPERPLAY_HEADER.png" alt="SuperPlay"&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div&gt;</p>
+<p class="p1">&lt;div class="milestone-title"&gt;SuperPlay&lt;/div&gt;</p>
+<p class="p1">&lt;div class="milestone-meta"&gt;</p>
+<p class="p1">&lt;span class="period-badge"&gt;2022 - 2023&lt;/span&gt;</p>
+<p class="p1">&lt;span class="role-badge"&gt;Senior Product Manager&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="milestone-content"&gt;</p>
+<p class="p1">&lt;div class="milestone-description"&gt;</p>
+<p class="p1">&lt;p&gt;I joined SuperPlay as a Senior PM during its early stages to build core product experiences. I designed a strategic roadmap of features that optimized the entire user lifecycle:&lt;/p&gt;</p>
+<p class="p1">&lt;ul class="achievement-list"&gt;</p>
+<p class="p1">&lt;li&gt;&lt;strong&gt;The Album:&lt;/strong&gt; A 3-month collection system leveraging the 'completionist' mindset. Delivered a &lt;strong&gt;38% revenue increase&lt;/strong&gt;.&lt;/li&gt;</p>
+<p class="p1">&lt;li&gt;&lt;strong&gt;The PET:&lt;/strong&gt; A 4-week progression system based on social status and collection. Strategically timed to launch one week before an Album ended. Result: &lt;strong&gt;25% revenue boost&lt;/strong&gt; and became a permanent core feature.&lt;/li&gt;</p>
+<p class="p1">&lt;li&gt;&lt;strong&gt;The Pixies:&lt;/strong&gt; Targeted the 'mid-cycle' dip with time-limited double rewards. Created urgent 'mini-completion' milestones, driving a &lt;strong&gt;33% revenue boost&lt;/strong&gt; and becoming an industry benchmark adopted by 6 major competitors.&lt;/li&gt;</p>
+<p class="p1">&lt;/ul&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="media-section"&gt;</p>
+<p class="p1">&lt;div class="media-grid"&gt;</p>
+<p class="p1">&lt;div class="media-item"&gt;&lt;div class="media-placeholder"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"&gt;&lt;rect x="3" y="3" width="18" height="18" rx="2"/&gt;&lt;circle cx="8.5" cy="8.5" r="1.5"/&gt;&lt;path d="M21 15l-5-5L5 21"/&gt;&lt;/svg&gt;&lt;span&gt;Image 1&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="media-item"&gt;&lt;div class="media-placeholder"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"&gt;&lt;polygon points="5,3 19,12 5,21"/&gt;&lt;/svg&gt;&lt;span&gt;Video 1&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="media-item"&gt;&lt;div class="media-placeholder"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"&gt;&lt;rect x="3" y="3" width="18" height="18" rx="2"/&gt;&lt;circle cx="8.5" cy="8.5" r="1.5"/&gt;&lt;path d="M21 15l-5-5L5 21"/&gt;&lt;/svg&gt;&lt;span&gt;Image 2&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;section class="milestone" id="playstudios"&gt;</p>
+<p class="p1">&lt;div class="milestone-inner"&gt;</p>
+<p class="p1">&lt;div class="milestone-header"&gt;</p>
+<p class="p1">&lt;div class="company-logo" style="background:#000"&gt;</p>
+<p class="p1">&lt;img src="https://i.imgur.com/PLAYSTUDIOS_HEADER.png" alt="Playstudios"&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div&gt;</p>
+<p class="p1">&lt;div class="milestone-title"&gt;Playstudios&lt;/div&gt;</p>
+<p class="p1">&lt;div class="milestone-meta"&gt;</p>
+<p class="p1">&lt;span class="period-badge"&gt;2023 - 2024&lt;/span&gt;</p>
+<p class="p1">&lt;span class="role-badge"&gt;Product Team Lead&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="milestone-content"&gt;</p>
+<p class="p1">&lt;div class="milestone-description"&gt;</p>
+<p class="p1">&lt;p&gt;I joined Playstudios as a Product Team Lead, managing &lt;strong&gt;3 Product Managers&lt;/strong&gt; and &lt;strong&gt;6 development teams&lt;/strong&gt;. My focus was on optimizing studio workflows to maximize R&amp;D efficiency.&lt;/p&gt;</p>
+<p class="p1">&lt;ul class="achievement-list"&gt;</p>
+<p class="p1">&lt;li&gt;&lt;strong&gt;Infrastructure Optimization:&lt;/strong&gt; Significantly improved technical KPIs, including load times and audiovisual quality, directly enhancing the user experience.&lt;/li&gt;</p>
+<p class="p1">&lt;li&gt;&lt;strong&gt;Feature Development:&lt;/strong&gt; Led the delivery of core features, including Collection Albums, bonus games, and diverse seasonal content.&lt;/li&gt;</p>
+<p class="p1">&lt;li&gt;&lt;strong&gt;Data-Driven Foundations:&lt;/strong&gt; Overhauled data infrastructure to enable more precise tracking and informed product decision-making.&lt;/li&gt;</p>
+<p class="p1">&lt;/ul&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;section class="milestone" id="amp"&gt;</p>
+<p class="p1">&lt;div class="milestone-inner"&gt;</p>
+<p class="p1">&lt;div class="milestone-header"&gt;</p>
+<p class="p1">&lt;div class="company-logo" style="background:#fff"&gt;</p>
+<p class="p1">&lt;img src="https://i.imgur.com/AMP_HEADER.png" alt="amp"&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div&gt;</p>
+<p class="p1">&lt;div class="milestone-title"&gt;amp&lt;/div&gt;</p>
+<p class="p1">&lt;div class="milestone-meta"&gt;</p>
+<p class="p1">&lt;span class="period-badge"&gt;2024 - 2026&lt;/span&gt;</p>
+<p class="p1">&lt;span class="role-badge"&gt;Senior Product Manager&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="milestone-content"&gt;</p>
+<p class="p1">&lt;div class="milestone-description"&gt;</p>
+<p class="p1">&lt;p&gt;I joined &lt;strong&gt;amp&lt;/strong&gt;, a fitness-tech startup, as a Senior PM to apply gaming-inspired engagement strategies to the fitness world. I led the development of an AI-driven ecosystem centered on personalization and immersion:&lt;/p&gt;</p>
+<p class="p1">&lt;ul class="achievement-list"&gt;</p>
+<p class="p1">&lt;li&gt;&lt;strong&gt;AI Coaching &amp; User Agency:&lt;/strong&gt; Integrated an AI Coach that generates personalized workouts with manual adjustment features—now utilized by &lt;strong&gt;over 68% of users&lt;/strong&gt; per session.&lt;/li&gt;</p>
+<p class="p1">&lt;li&gt;&lt;strong&gt;Social &amp; Holistic Experience:&lt;/strong&gt; Launched Shared Workouts for social engagement and "amp Music" (Spotify/Apple integration) for a seamless training environment.&lt;/li&gt;</p>
+<p class="p1">&lt;li&gt;&lt;strong&gt;Dynamic Feedback &amp; Gamification:&lt;/strong&gt; Built a real-time scoring system that grades exercise quality and automatically adjusts weights based on performance data.&lt;/li&gt;</p>
+<p class="p1">&lt;li&gt;&lt;strong&gt;AI Voice Engine:&lt;/strong&gt; Developed a dynamic audio system delivering real-time, event-triggered feedback in the coach's voice.&lt;/li&gt;</p>
+<p class="p1">&lt;/ul&gt;</p>
+<p class="p1">&lt;div class="result-box"&gt;</p>
+<p class="p1">&lt;strong&gt;The Result:&lt;/strong&gt; Transformed the product into a highly personalized, interactive trainer, driving industry-leading engagement and user satisfaction.</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="media-section"&gt;</p>
+<p class="p1">&lt;div class="media-grid"&gt;</p>
+<p class="p1">&lt;div class="media-item"&gt;&lt;div class="media-placeholder"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"&gt;&lt;rect x="3" y="3" width="18" height="18" rx="2"/&gt;&lt;circle cx="8.5" cy="8.5" r="1.5"/&gt;&lt;path d="M21 15l-5-5L5 21"/&gt;&lt;/svg&gt;&lt;span&gt;Image 1&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="media-item"&gt;&lt;div class="media-placeholder"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"&gt;&lt;polygon points="5,3 19,12 5,21"/&gt;&lt;/svg&gt;&lt;span&gt;Video 1&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="media-item"&gt;&lt;div class="media-placeholder"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"&gt;&lt;rect x="3" y="3" width="18" height="18" rx="2"/&gt;&lt;circle cx="8.5" cy="8.5" r="1.5"/&gt;&lt;path d="M21 15l-5-5L5 21"/&gt;&lt;/svg&gt;&lt;span&gt;Image 2&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/section&gt;</p>
+<p class="p1">&lt;/main&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1">const items=document.querySelectorAll('.timeline-item'),</p>
+<p class="p1">sections=document.querySelectorAll('.milestone'),</p>
+<p class="p1">fireProgress=document.getElementById('fireProgress'),</p>
+<p class="p1">fireParticles=document.getElementById('fireParticles'),</p>
+<p class="p1">fireGlow=document.getElementById('fireGlow');</p>
+<p class="p2"><br></p>
+<p class="p1">function updateTimeline(){</p>
+<p class="p1">const scrollPos=window.scrollY+window.innerHeight/2;</p>
+<p class="p1">let activeIdx=-1;</p>
+<p class="p1">sections.forEach((s,i)=&gt;{if(scrollPos&gt;=s.offsetTop)activeIdx=i});</p>
+<p class="p2"><br></p>
+<p class="p1">// Only activate items and fire when user reaches Playtika section</p>
+<p class="p1">const reachedMilestones = activeIdx &gt;= 0;</p>
+<p class="p1">items.forEach((it,i)=&gt;{it.classList.toggle('active',reachedMilestones &amp;&amp; i&lt;=activeIdx)});</p>
+<p class="p2"><br></p>
+<p class="p1">// Calculate flame position based on icon centers</p>
+<p class="p1">let pct = 0;</p>
+<p class="p1">if(reachedMilestones &amp;&amp; activeIdx &gt;= 0){</p>
+<p class="p1">// If at the last milestone (amp), fill 100%</p>
+<p class="p1">if(activeIdx === items.length - 1){</p>
+<p class="p1">pct = 100;</p>
+<p class="p1">}else{</p>
+<p class="p1">const timeline = document.querySelector('.timeline');</p>
+<p class="p1">const timelineRect = timeline.getBoundingClientRect();</p>
+<p class="p1">const timelineWidth = timelineRect.width;</p>
+<p class="p1">const activeItem = items[activeIdx];</p>
+<p class="p1">const itemRect = activeItem.getBoundingClientRect();</p>
+<p class="p1">// Get center of the icon (where white circle touches timeline)</p>
+<p class="p1">const iconCenter = itemRect.left + (itemRect.width / 2) - timelineRect.left;</p>
+<p class="p1">pct = (iconCenter / timelineWidth) * 100;</p>
+<p class="p1">}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// Fire only appears when user reaches first milestone</p>
+<p class="p1">if(reachedMilestones){</p>
+<p class="p1">fireProgress.style.width=pct+'%';</p>
+<p class="p1">fireParticles.style.width=pct+'%';</p>
+<p class="p1">fireGlow.style.width=pct+'%';</p>
+<p class="p1">fireProgress.style.opacity='1';</p>
+<p class="p1">fireParticles.style.opacity='1';</p>
+<p class="p1">fireGlow.style.opacity='1';</p>
+<p class="p1">}else{</p>
+<p class="p1">fireProgress.style.width='0%';</p>
+<p class="p1">fireParticles.style.width='0%';</p>
+<p class="p1">fireGlow.style.width='0%';</p>
+<p class="p1">fireProgress.style.opacity='0';</p>
+<p class="p1">fireParticles.style.opacity='0';</p>
+<p class="p1">fireGlow.style.opacity='0';</p>
+<p class="p1">}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">items.forEach(it=&gt;{</p>
+<p class="p1">it.addEventListener('click',()=&gt;{</p>
+<p class="p1">const target=document.getElementById(it.dataset.target);</p>
+<p class="p1">if(target)target.scrollIntoView({behavior:'smooth',block:'start'});</p>
+<p class="p1">});</p>
+<p class="p1">});</p>
+<p class="p2"><br></p>
+<p class="p1">window.addEventListener('scroll',updateTimeline);</p>
+<p class="p1">window.addEventListener('resize',updateTimeline);</p>
+<p class="p1">updateTimeline();</p>
+<p class="p2"><br></p>
+<p class="p1">// Auto-play videos when they come into view</p>
+<p class="p1">const videoObserver = new IntersectionObserver((entries) =&gt; {</p>
+<p class="p1">entries.forEach(entry =&gt; {</p>
+<p class="p1">const video = entry.target;</p>
+<p class="p1">if(entry.isIntersecting){</p>
+<p class="p1">video.play();</p>
+<p class="p1">}else{</p>
+<p class="p1">video.pause();</p>
+<p class="p1">}</p>
+<p class="p1">});</p>
+<p class="p1">}, {threshold: 0.5});</p>
+<p class="p2"><br></p>
+<p class="p1">document.querySelectorAll('.media-item video').forEach(video =&gt; {</p>
+<p class="p1">video.muted = true;</p>
+<p class="p1">video.loop = true;</p>
+<p class="p1">video.playsInline = true;</p>
+<p class="p1">videoObserver.observe(video);</p>
+<p class="p1">});</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
