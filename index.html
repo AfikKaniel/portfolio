@@ -117,11 +117,11 @@ main{padding-top:190px}
 
 /* Diagonal Staircase Media Layout for Playtika (horizontal videos 2622x1206) */
 .media-section{margin-top:10px}
-.media-grid{display:flex;flex-direction:row;position:relative;height:220px;justify-content:space-between}
-.media-item{width:218px;height:100px;position:absolute;background:var(--card);border:1px solid rgba(255,255,255,0.05);border-radius:10px;overflow:hidden;cursor:pointer;transition:all 0.4s cubic-bezier(0.4,0,0.2,1)}
+.media-grid{display:flex;flex-direction:row;position:relative;height:160px;justify-content:space-between}
+.media-item{width:250px;height:115px;position:absolute;background:var(--card);border:1px solid rgba(255,255,255,0.05);border-radius:10px;overflow:hidden;cursor:pointer;transition:all 0.4s cubic-bezier(0.4,0,0.2,1)}
 .media-item:nth-child(1){left:0;top:0}
-.media-item:nth-child(2){left:50%;transform:translateX(-50%);top:60px}
-.media-item:nth-child(3){right:0;top:120px}
+.media-item:nth-child(2){left:50%;transform:translateX(-50%);top:22px}
+.media-item:nth-child(3){right:0;top:44px}
 .media-item:hover{transform:scale(1.08);z-index:10;box-shadow:0 10px 30px rgba(0,0,0,0.4);border-color:rgba(99,102,241,0.3)}
 .media-item:nth-child(2):hover{transform:translateX(-50%) scale(1.08)}
 .media-item img,.media-item video{width:100%;height:100%;object-fit:cover}
@@ -131,15 +131,15 @@ main{padding-top:190px}
 
 /* Vertical video layout for SuperPlay and amp (1206x2622) */
 #superplay .media-grid,
-#amp .media-grid{height:350px}
+#amp .media-grid{height:260px}
 #superplay .media-item,
-#amp .media-item{width:92px;height:200px}
+#amp .media-item{width:110px;height:240px}
 #superplay .media-item:nth-child(1),
 #amp .media-item:nth-child(1){left:0;top:0}
 #superplay .media-item:nth-child(2),
-#amp .media-item:nth-child(2){left:50%;transform:translateX(-50%);top:75px}
+#amp .media-item:nth-child(2){left:50%;transform:translateX(-50%);top:10px}
 #superplay .media-item:nth-child(3),
-#amp .media-item:nth-child(3){right:0;top:150px}
+#amp .media-item:nth-child(3){right:0;top:20px}
 #superplay .media-item:nth-child(2):hover,
 #amp .media-item:nth-child(2):hover{transform:translateX(-50%) scale(1.08)}
 
@@ -153,20 +153,25 @@ main{padding-top:190px}
 #amp .period-badge{background:linear-gradient(135deg,#6366f1,#8b5cf6)}
 
 @media(max-width:1024px){
-.media-grid{height:auto;position:static;flex-direction:row;flex-wrap:wrap;gap:10px}
-.media-item{position:static!important;width:calc(33% - 7px)!important;transform:none!important}
-.media-item:hover{transform:scale(1.05)!important}
+.media-grid{height:auto!important;position:static!important;flex-direction:column!important;align-items:center;gap:12px}
+.media-item{position:static!important;transform:none!important;width:80%!important;max-width:350px;height:auto!important;aspect-ratio:2622/1206}
+.media-item:hover{transform:scale(1.03)!important}
+#superplay .media-item,
+#amp .media-item{width:50%!important;max-width:180px;aspect-ratio:1206/2622}
 }
 @media(max-width:768px){
 .sticky-header{padding:8px 16px;gap:8px}
 .header-tags{display:none}
+.header-email{margin-left:auto;margin-right:0}
 .timeline-bar{padding:14px 16px}
 .milestone,.intro-section{padding:40px 16px}
 .intro-text h1{font-size:2rem}
 .milestone-title{font-size:1.5rem}
 .timeline-logo{width:38px;height:38px;padding:6px}
 .timeline-item.active .timeline-logo{transform:scale(1.2)}
-.media-item{width:100%!important;height:90px!important}
+.media-item{width:85%!important;max-width:300px}
+#superplay .media-item,
+#amp .media-item{width:40%!important;max-width:140px}
 }
 </style>
 </head>
