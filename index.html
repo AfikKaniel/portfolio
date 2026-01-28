@@ -167,7 +167,7 @@ main{padding-top:190px}
 <header class="sticky-header">
 <div class="profile-pic">
 <div class="profile-pic-inner">
-<img src="images/profile.jpg" alt="Afik Kaniel">
+<img src="images/profile.JPEG" alt="Afik Kaniel">
 </div>
 </div>
 <div class="header-info">
@@ -203,21 +203,21 @@ main{padding-top:190px}
 <div class="fire-glow" id="fireGlow"></div>
 <div class="timeline-item active" data-target="playtika">
 <div class="timeline-logo">
-<img src="images/playtika-icon.png" alt="Playtika">
+<img src="images/Playtika-icon.webp" alt="Playtika">
 </div>
 <div class="timeline-label">Playtika</div>
 <div class="timeline-year">2020-2022</div>
 </div>
 <div class="timeline-item" data-target="superplay">
 <div class="timeline-logo">
-<img src="images/superplay-icon.png" alt="SuperPlay">
+<img src="images/SuperPlay-icon.png" alt="SuperPlay">
 </div>
 <div class="timeline-label">SuperPlay</div>
 <div class="timeline-year">2022-2023</div>
 </div>
 <div class="timeline-item" data-target="playstudios">
 <div class="timeline-logo">
-<img src="images/playstudios-icon.png" alt="Playstudios">
+<img src="images/Playstudios-icon.png" alt="Playstudios">
 </div>
 <div class="timeline-label">Playstudios</div>
 <div class="timeline-year">2023-2024</div>
@@ -251,7 +251,7 @@ main{padding-top:190px}
 <div class="milestone-inner">
 <div class="milestone-header">
 <div class="company-logo">
-<img src="images/playtika-logo.png" alt="Playtika">
+<img src="images/Playtika-logo.png" alt="Playtika">
 </div>
 <div>
 <div class="milestone-title">Playtika</div>
@@ -289,7 +289,7 @@ main{padding-top:190px}
 <div class="milestone-inner">
 <div class="milestone-header">
 <div class="company-logo" style="background:#000">
-<img src="images/superplay-logo.png" alt="SuperPlay">
+<img src="images/Superplay-logo.png" alt="SuperPlay">
 </div>
 <div>
 <div class="milestone-title">SuperPlay</div>
@@ -323,7 +323,7 @@ main{padding-top:190px}
 <div class="milestone-inner">
 <div class="milestone-header">
 <div class="company-logo" style="background:#000">
-<img src="images/playstudios-logo.png" alt="Playstudios">
+<img src="images/Playstudios-logo.png" alt="Playstudios">
 </div>
 <div>
 <div class="milestone-title">Playstudios</div>
@@ -440,7 +440,12 @@ fireGlow.style.opacity='0';
 items.forEach(it=>{
 it.addEventListener('click',()=>{
 const target=document.getElementById(it.dataset.target);
-if(target)target.scrollIntoView({behavior:'smooth',block:'start'});
+if(target){
+const headerOffset = 180;
+const elementPosition = target.getBoundingClientRect().top;
+const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+window.scrollTo({top: offsetPosition, behavior: 'smooth'});
+}
 });
 });
 
