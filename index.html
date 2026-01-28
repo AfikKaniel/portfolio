@@ -115,33 +115,19 @@ main{padding-top:190px}
 .result-box::before{content:'🎯';position:absolute;right:12px;top:12px;font-size:1.5rem;opacity:0.3}
 .result-box strong{color:var(--accent)}
 
-/* Diagonal Staircase Media Layout for Playtika (horizontal videos 2622x1206) */
+/* Diagonal Staircase Media Layout for ALL milestones */
 .media-section{margin-top:10px}
-.media-grid{display:flex;flex-direction:row;position:relative;height:220px;justify-content:space-between}
-.media-item{width:218px;height:100px;position:absolute;background:var(--card);border:1px solid rgba(255,255,255,0.05);border-radius:10px;overflow:hidden;cursor:pointer;transition:all 0.4s cubic-bezier(0.4,0,0.2,1)}
+.media-grid{display:flex;flex-direction:row;position:relative;height:200px;justify-content:space-between}
+.media-item{width:160px;height:100px;position:absolute;background:var(--card);border:1px solid rgba(255,255,255,0.05);border-radius:10px;overflow:hidden;cursor:pointer;transition:all 0.4s cubic-bezier(0.4,0,0.2,1)}
 .media-item:nth-child(1){left:0;top:0}
-.media-item:nth-child(2){left:50%;transform:translateX(-50%);top:60px}
-.media-item:nth-child(3){right:0;top:120px}
+.media-item:nth-child(2){left:50%;transform:translateX(-50%);top:50px}
+.media-item:nth-child(3){right:0;top:100px}
 .media-item:hover{transform:scale(1.08);z-index:10;box-shadow:0 10px 30px rgba(0,0,0,0.4);border-color:rgba(99,102,241,0.3)}
 .media-item:nth-child(2):hover{transform:translateX(-50%) scale(1.08)}
 .media-item img,.media-item video{width:100%;height:100%;object-fit:cover}
 .media-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;gap:8px;color:var(--muted);background:linear-gradient(135deg,rgba(99,102,241,0.05),rgba(236,72,153,0.05))}
 .media-placeholder svg{width:20px;height:20px;opacity:0.4}
 .media-placeholder span{font-size:0.7rem;opacity:0.6}
-
-/* Vertical video layout for SuperPlay and amp (1206x2622) */
-#superplay .media-grid,
-#amp .media-grid{height:350px}
-#superplay .media-item,
-#amp .media-item{width:92px;height:200px}
-#superplay .media-item:nth-child(1),
-#amp .media-item:nth-child(1){left:0;top:0}
-#superplay .media-item:nth-child(2),
-#amp .media-item:nth-child(2){left:50%;transform:translateX(-50%);top:75px}
-#superplay .media-item:nth-child(3),
-#amp .media-item:nth-child(3){right:0;top:150px}
-#superplay .media-item:nth-child(2):hover,
-#amp .media-item:nth-child(2):hover{transform:translateX(-50%) scale(1.08)}
 
 /* Milestone without media - less padding */
 #playstudios{min-height:auto;padding-bottom:40px}
