@@ -383,26 +383,6 @@ main,
   text-wrap: pretty;
 }
 
-.about-more {
-  display: grid;
-  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
-  gap: clamp(32px, 6vw, 96px);
-  padding-top: clamp(56px, 7vw, 88px);
-}
-.skills {
-  grid-column: 2;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  column-gap: 28px;
-}
-.skills li {
-  padding: 12px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: 15px;
-  line-height: 1.45;
-  color: var(--text-2);
-}
-
 .js-motion .about-scene { height: 250svh; }
 .js-motion .about-stage {
   position: sticky;
@@ -1326,8 +1306,6 @@ html:not(.js-motion) .chapter-nav { display: none; }
   .app-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
   .job-grid { grid-template-columns: 200px minmax(0, 1fr); }
-
-  .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 760px) {
@@ -1344,8 +1322,6 @@ html:not(.js-motion) .chapter-nav { display: none; }
   /* About: photo above the text. */
   .about-grid { grid-template-columns: 1fr; gap: 20px; }
   .portrait { max-width: 260px; aspect-ratio: 1; border-radius: 22px; }
-  .about-more { grid-template-columns: 1fr; gap: 24px; }
-  .skills { grid-column: 1; grid-template-columns: 1fr; }
   .js-motion .about-stage { align-items: center; }
   .js-motion .portrait { width: min(112px, 13svh); border-radius: 50%; }
   .js-motion .manifesto { font-size: clamp(16px, min(5.4vw, 3.15svh), 24px); }
