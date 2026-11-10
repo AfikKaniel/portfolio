@@ -30,6 +30,10 @@
   /* Scroll scenes and the liquid light run only when the person has not asked for reduced motion. */
   if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     document.documentElement.classList.add("js-motion");
+    // Touch screens move one screen per swipe through the top of the page.
+    if (window.matchMedia("(hover: none) and (pointer: coarse)").matches) {
+      document.documentElement.classList.add("pages");
+    }
   }
 </script>
 <script src="assets/js/site.js" defer></script>
@@ -90,8 +94,6 @@
 
   <!-- Scene 3: the apps. One 3D phone stays on stage and turns over between apps. -->
   <section class="apps" id="apps" aria-labelledby="apps-title" style="--count: 4">
-    <!-- One snap stop per app: a swipe moves one app, never two. -->
-    <div class="app-snaps" aria-hidden="true"><i data-exit></i><i></i><i></i><i></i><i></i><i data-exit></i></div>
     <div class="apps-stage">
       <div class="wrap apps-grid">
         <div class="apps-copy">

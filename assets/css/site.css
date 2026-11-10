@@ -333,6 +333,8 @@ main,
 
 /* Scroll: the hook rises and fades (site.js sets the values). */
 .js-motion .hero { height: 160svh; }
+/* On touch screens the hook is one screen, so the first swipe lands on About. */
+.js-motion.pages .hero { height: 100svh; }
 .js-motion .hero-stage {
   position: sticky;
   top: 0;
@@ -384,6 +386,8 @@ main,
 }
 
 .js-motion .about-scene { height: 250svh; }
+/* On touch screens About is one screen; the words light up on their own as it arrives. */
+.js-motion.pages .about-scene { height: 100svh; }
 .js-motion .about-stage {
   position: sticky;
   top: 0;
@@ -505,17 +509,18 @@ main,
 /* Pinned scene: words on the left, the phone on the right. */
 .js-motion .apps { height: calc(100svh + var(--count) * 85svh); }
 
-/* Snap stops, one per app: a swipe or a fling can't pass a stop, so it moves one app at a time.
-   site.js places them (where each app is centred, as the ticks scroll to) and turns snapping on
-   only inside the scene; the two exit stops let the page carry on above and below it. */
-.app-snaps { display: none; }
-.js-motion .app-snaps {
-  display: block;
+/* Snap stops, one per app, for mouse and trackpad: a fling can't pass a stop, so it moves one
+   app at a time. site.js adds and places them and turns snapping on only inside the scene;
+   the two exit stops let the page carry on above and below it. */
+.snaps {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 0;
   pointer-events: none;
 }
-.js-motion .app-snaps i {
+.snaps i {
   position: absolute;
   left: 0;
   width: 1px;
@@ -523,8 +528,10 @@ main,
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
-.js-motion .app-snaps i[data-exit] { scroll-snap-stop: normal; }
-html.snap-apps { scroll-snap-type: y mandatory; }
+.snaps i[data-exit] { scroll-snap-stop: normal; }
+html.snapping { scroll-snap-type: y mandatory; }
+/* Touch screens: site.js moves the page itself, screen by screen. */
+html.pages { scroll-behavior: auto; }
 
 .js-motion .apps-stage {
   position: sticky;
@@ -787,6 +794,14 @@ html.snap-apps { scroll-snap-type: y mandatory; }
   color: var(--muted);
 }
 .pp-app img { width: 28px; height: 28px; border-radius: 7px; }
+/* How many play: a screen of its own, before the pinned retention scene. */
+.js-motion .reach {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: var(--nav-h) 0 0;
+}
+.js-motion .reach > .wrap { width: 100%; }
 .reach h2,
 .pp h2 {
   margin-top: 14px;
@@ -928,6 +943,14 @@ html.snap-apps { scroll-snap-type: y mandatory; }
    ========================================================= */
 
 .time { padding: clamp(110px, 18vh, 200px) 0 0; }
+/* On touch screens playing time is one screen. */
+.js-motion.pages .time {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: var(--nav-h) 0 0;
+}
+.js-motion.pages .time > .wrap { width: 100%; }
 .time h2 {
   max-width: 16ch;
   font-size: clamp(34px, 4.2vw, 60px);

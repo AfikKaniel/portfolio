@@ -134,6 +134,8 @@
     return span;
   });
   let litCount = -1;
+  const ABOUT_TIME = 2.4; // seconds for About to play through on touch screens
+  let aboutT = 0;
 
   // Pin-Point: 100 dots; a fixed shuffle decides who stays, so the players who stay are spread out.
   const dotsEl = $(".dots", pp);
@@ -273,7 +275,9 @@
 
   const scrollToApp = (i, behavior = "smooth") => {
     const range = box.apps.height - Site.vh;
-    window.scrollTo({ top: box.apps.top + ((i + 0.5) / count) * range, behavior });
+    const top = box.apps.top + ((i + 0.5) / count) * range;
+    if (pages && behavior === "smooth") glideTo(top);
+    else window.scrollTo({ top, behavior });
   };
   ticks.forEach((tick, i) => tick.addEventListener("click", () => scrollToApp(i)));
   // Keyboard: focusing a link inside a hidden app brings that app on stage.
@@ -281,29 +285,69 @@
     item.addEventListener("focusin", () => { if (i !== activeApp) scrollToApp(i, "instant"); });
   });
 
-  /* ---------- One swipe, one app ---------- */
+  /* ---------- One swipe, one stop ---------- */
 
-  // Stops, as page scroll positions: an exit above the scene, each app centred, an exit below.
-  const snapEls = $$(".app-snaps i", apps);
+  // Stops, as page scroll positions. With a mouse: an exit above the apps scene, each app
+  // centred, an exit below; the browser's snapping holds the page on them. On touch screens the
+  // top of the page moves one screen per swipe (see "Touch screens" below): the hook, About, each
+  // app, Pin-Point's players, each day of its retention, playing time and the career highlights;
+  // the last stop is an exit into the career details, which scroll freely.
+  const pages = root.classList.contains("pages");
+  const careerHead = $(".section-head", career);
+  const PP_STOPS = [0, 0.26, 0.54, 0.84]; // one inside each day's part of the retention scene
+  let snapBox = null;
+  if (!pages) {
+    snapBox = document.createElement("div");
+    snapBox.className = "snaps";
+    snapBox.setAttribute("aria-hidden", "true");
+    document.body.append(snapBox);
+  }
   let stops = [];
   let snapOn = false;
+  let snapHold = 0;
+  const scrollPad = () => parseFloat(getComputedStyle(root).scrollPaddingTop) || 0;
   function placeSnaps() {
-    const range = box.apps.height - Site.vh;
+    const vh = Site.vh;
+    const pad = scrollPad();
+    const appStops = appItems.map((_, i) => box.apps.top + ((i + 0.5) / count) * (box.apps.height - vh));
+    if (pages) {
+      stops = Site.stops = [0, box.about.top, ...appStops, box.reach.top,
+        ...PP_STOPS.map((p) => box.pp.top + p * (box.pp.height - vh)),
+        box.time.top, pageTop(careerHead) - pad, jobTops[0] - chapterOffset];
+      settlePage();
+      return;
+    }
+    stops = Site.stops = [box.apps.top - vh * 0.5, ...appStops, box.reach.top];
+    while (snapBox.children.length < stops.length) snapBox.append(document.createElement("i"));
+    while (snapBox.children.length > stops.length) snapBox.lastChild.remove();
     // Snapping lines a stop up with the top of the page less its scroll padding.
-    const pad = parseFloat(getComputedStyle(root).scrollPaddingTop) || 0;
-    stops = [box.apps.top - Site.vh * 0.5,
-      ...appItems.map((_, i) => box.apps.top + ((i + 0.5) / count) * range),
-      box.reach.top];
-    snapEls.forEach((el, i) => { el.style.top = `${(stops[i] - box.apps.top + pad).toFixed(1)}px`; });
+    [...snapBox.children].forEach((el, i) => {
+      el.style.top = `${(stops[i] + pad).toFixed(1)}px`;
+      el.toggleAttribute("data-exit", i === 0 || i === stops.length - 1);
+    });
   }
-  // Snapping runs only inside the scene, so the rest of the page scrolls as usual. Touch flicks
-  // are handled by the browser's own snapping: each app stop is one a fling can't pass.
+  // Snapping runs only between the first and the last stop, so the rest of the page scrolls as
+  // usual. On touch screens the first stop is the top of the page.
   function updateSnap(y) {
-    const on = stops.length > 0 && y > stops[0] + 1 && y < stops[stops.length - 1] - 1;
+    const last = stops[stops.length - 1];
+    const inside = pages ? y < last - 1 : y > stops[0] + 1 && y < last - 1;
+    const on = stops.length > 0 && inside && performance.now() > snapHold;
     if (on !== snapOn) {
       snapOn = on;
-      root.classList.toggle("snap-apps", on);
+      if (!pages) root.classList.toggle("snapping", on);
     }
+  }
+  if (!pages) {
+    // A link to a place on the page (the nav, "See the apps", the career highlights) goes straight
+    // there: snapping waits until the page has arrived, then settles on the nearest stop.
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest('a[href^="#"]')) return;
+      snapHold = performance.now() + 2000;
+      updateSnap(window.scrollY);
+    });
+    window.addEventListener("scrollend", () => {
+      if (snapHold > performance.now()) snapHold = 0;
+    });
   }
   // A mouse wheel or trackpad sends many small scrolls per gesture, which the browser's snapping
   // counts as many moves. Inside the scene one gesture moves one stop. The rest of that gesture
@@ -365,6 +409,125 @@
     setTimeout(settle, 250);
   }, { passive: false });
 
+  /* ---------- Touch screens: one swipe, one screen ---------- */
+
+  // The page follows the finger. On release it moves exactly one stop the way the swipe went
+  // (or back to where it was, after a small drag), on a spring that starts at the finger's speed.
+  // A swipe while the page is still moving counts on from the stop it was heading to, so quick
+  // swipes are never lost. Past the last stop the page scrolls as usual.
+  const SPRING = (2 * Math.PI) / 0.5; // critically damped: settles in about half a second
+  let glide = null; // { index, target, x, v }
+  let touch = null;
+  let idleTimer = 0;
+  const lastStop = () => stops.length - 1;
+  const inPages = (y) => stops.length > 0 && y < stops[lastStop()] + 2;
+  function nearestStop(y) {
+    let best = 0;
+    stops.forEach((s, i) => { if (Math.abs(s - y) < Math.abs(stops[best] - y)) best = i; });
+    return best;
+  }
+  // Inside the stops a move ends on the nearest stop; below them it ends where it was sent.
+  function glideTo(top, v = 0) {
+    const index = inPages(top) ? nearestStop(top) : -1;
+    glide = { index, target: index >= 0 ? stops[index] : top, x: window.scrollY, v };
+  }
+  function stepGlide(dt) {
+    const h = dt / 4;
+    for (let i = 0; i < 4; i++) {
+      glide.v += (-SPRING * SPRING * (glide.x - glide.target) - 2 * SPRING * glide.v) * h;
+      glide.x += glide.v * h;
+    }
+    if (Math.abs(glide.x - glide.target) < 0.5 && Math.abs(glide.v) < 30) {
+      window.scrollTo(0, glide.target);
+      glide = null;
+    } else {
+      window.scrollTo(0, glide.x);
+    }
+  }
+  // When the page comes to rest between stops by other means (a fling from below, the keyboard,
+  // a layout change), it settles on the nearest stop.
+  function settlePage() {
+    if (!pages || touch || glide || !stops.length) return;
+    const y = window.scrollY;
+    if (y >= stops[lastStop()] - 1) return;
+    const i = nearestStop(y);
+    if (Math.abs(stops[i] - y) > 1) glideTo(stops[i]);
+  }
+  // Past a neighbouring stop the page still follows the finger, but less and less.
+  const rubber = (over) => (over * Site.vh * 0.55) / (Site.vh + 0.55 * over);
+
+  if (pages) {
+    window.addEventListener("touchstart", (e) => {
+      touch = null;
+      if (e.touches.length !== 1) return;
+      const y = window.scrollY;
+      if (!inPages(y)) {
+        glide = null; // a finger stops a long move below the stops; from there the page scrolls as usual
+        return;
+      }
+      const grabbed = !!glide;
+      const base = glide && glide.index >= 0 ? glide.index : nearestStop(y);
+      glide = null; // the finger catches the page where it is
+      const p = e.touches[0];
+      touch = { y0: p.clientY, scroll0: y, base, grabbed, mode: "", track: [[e.timeStamp, p.clientY]] };
+    }, { passive: true });
+
+    window.addEventListener("touchmove", (e) => {
+      if (!touch) return;
+      if (e.touches.length !== 1) { touch = null; return; } // two fingers: let the browser zoom
+      const p = e.touches[0];
+      const dy = touch.y0 - p.clientY; // more than 0: the page moves on
+      if (!touch.mode) touch.mode = touch.base === lastStop() && dy > 0 ? "free" : "page";
+      if (touch.mode === "free") return;
+      if (e.cancelable) e.preventDefault();
+      touch.track.push([e.timeStamp, p.clientY]);
+      if (touch.track.length > 8) touch.track.shift();
+      const lo = stops[Math.max(0, touch.base - 1)];
+      const hi = stops[Math.min(lastStop(), touch.base + 1)];
+      let y = touch.scroll0 + dy;
+      if (y < lo) y = lo - rubber(lo - y);
+      else if (y > hi) y = hi + rubber(y - hi);
+      window.scrollTo(0, Math.max(0, y));
+    }, { passive: false });
+
+    const release = (e) => {
+      const t = touch;
+      touch = null;
+      if (!t || t.mode === "free") return;
+      if (!t.mode) {
+        if (t.grabbed) glideTo(stops[t.base]); // a tap: the move the finger caught carries on
+        return;
+      }
+      const [ta, ya] = t.track.find(([ts]) => e.timeStamp - ts < 100) || t.track[t.track.length - 1];
+      const [tb, yb] = t.track[t.track.length - 1];
+      const v = tb > ta ? ((ya - yb) / (tb - ta)) * 1000 : 0; // the page's speed, px/s
+      const moved = t.y0 - yb;
+      let dir = 0;
+      if (Math.abs(v) > 300) dir = Math.sign(v);
+      else if (Math.abs(moved) > Site.vh * 0.15) dir = Math.sign(moved);
+      if (dir && Math.abs(moved) > 24 && Math.sign(moved) !== dir) dir = 0; // pulled back: stay
+      const index = Math.min(lastStop(), Math.max(0, t.base + dir));
+      glideTo(stops[index], Math.max(-5000, Math.min(5000, v)));
+    };
+    window.addEventListener("touchend", release);
+    window.addEventListener("touchcancel", release);
+
+    window.addEventListener("scroll", () => {
+      if (touch || glide) return;
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(settlePage, 160);
+    }, { passive: true });
+
+    // Links to places on the page move there the same way.
+    document.addEventListener("click", (e) => {
+      const link = e.target.closest('a[href^="#"]');
+      const target = link && link.hash.length > 1 && document.getElementById(link.hash.slice(1));
+      if (!target) return;
+      e.preventDefault();
+      glideTo(Math.max(0, pageTop(target) - scrollPad()));
+    });
+  }
+
   /* ---------- Pin-Point: each day's number is always reached in full ---------- */
 
   // Scroll picks the day; the count itself runs on time, so it never stops between values.
@@ -407,15 +570,23 @@
 
     // Scene 1: the hook rises and fades.
     if (y < box.hero.top + box.hero.height) {
-      const h = progress(box.hero);
+      // On touch screens the hook isn't pinned: it fades as it scrolls away.
+      const h = pages ? clamp(y / (vh * 0.8)) : progress(box.hero);
       put(heroTitle, "transform", `translate3d(0, ${(-h * 120).toFixed(1)}px, 0)`);
       put(heroTitle, "opacity", Math.max(0, 1 - h * 1.5).toFixed(3));
       put(heroSub, "transform", `translate3d(0, ${(-h * 160).toFixed(1)}px, 0)`);
       put(heroSub, "opacity", Math.max(0, 1 - h * 2.4).toFixed(3));
     }
 
-    // Scene 2: the photo settles in, then the words light up.
-    const pa = progress(box.about);
+    // Scene 2: the photo settles in, then the words light up. On touch screens About is one
+    // screen, so this runs on time once About comes up (and back when it goes).
+    let pa;
+    if (pages) {
+      aboutT = clamp(aboutT + (y > box.about.top - vh * 0.5 ? dt : -dt) / ABOUT_TIME);
+      pa = aboutT;
+    } else {
+      pa = progress(box.about);
+    }
     put(aboutScene, "--pa", pa.toFixed(4));
     const lit = Math.round(clamp((pa - 0.14) / 0.7) * wordEls.length);
     if (lit !== litCount) {
@@ -447,8 +618,9 @@
       put(ppGlass, "--sy", `${(Site.pointer.y - r.top).toFixed(0)}px`);
     }
 
-    // Time bars grow as they come into view.
-    put(bars, "--g", ease(clamp((y + vh - box.bars.top) / (vh * 0.75))).toFixed(4));
+    // Time bars grow as they come into view; on touch screens they are full when the screen lands.
+    const grow = pages ? (y - box.time.top + vh * 0.6) / (vh * 0.6) : (y + vh - box.bars.top) / (vh * 0.75);
+    put(bars, "--g", ease(clamp(grow)).toFixed(4));
 
     // Scene 5: the chapter bar fills, and marks the chapter on screen.
     const line = y + chapterOffset + 1;
@@ -479,6 +651,7 @@
     const now = ms / 1000;
     const dt = Math.min(0.05, Math.max(0, now - lastTime));
     lastTime = now;
+    if (glide) stepGlide(dt);
     update(dt, now);
     Site.onFrame.forEach((f) => f(dt, now));
     requestAnimationFrame(frame);
